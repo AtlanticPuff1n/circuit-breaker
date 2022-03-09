@@ -1,0 +1,44 @@
+server:
+  port: 8082
+
+spring:
+  h2:
+    console:
+      enabled: 'true'
+      path: /h2
+  datasource:
+    username: sa
+    password: ''
+    url: jdbc:h2:mem:testdb
+    driverClassName: org.h2.Driver
+  jpa:
+    database-platform: org.hibernate.dialect.H2Dialect
+    defer-datasource-initialization: true
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher
+
+resilience4j:
+  circuitbreaker:
+    instances:
+      orderService:
+        registerHealthIndicator: true
+        slidingWindowSize: 10
+        permittedNumberOfCallsInHalfOpenState: 3
+        slidingWindowType: TIME_BASED
+        minimumNumberOfCalls: 20
+        waitDurationInOpenState: 50s
+        failureRateThreshold: 50
+        eventConsumerBufferSize: 10
+
+management:
+  health:
+    circuitbreakers:
+      enabled: true
+  endpoints:
+    web:
+      exposure:
+        include: health
+  endpoint:
+    health:
+      show-details: always
