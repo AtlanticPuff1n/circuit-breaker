@@ -28,7 +28,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @ExtendWith(SpringExtension.class)
 @WebMvcTest(controllers = InventoryControllerImpl.class)
-public class InventoryControllerImplTest {
+class InventoryControllerImplTest {
 
     @Autowired
     private MockMvc mockMvc;
@@ -38,7 +38,7 @@ public class InventoryControllerImplTest {
 
     @Test
     @SneakyThrows(Exception.class)
-    public void getItem_pathVariableNameNotPresent() {
+    void getItem_pathVariableNameNotPresent() {
         mockMvc.perform(get("/item/{name}", "test"))
                 .andDo(print())
                 .andExpect(status().isOk())
@@ -47,7 +47,7 @@ public class InventoryControllerImplTest {
 
     @Test
     @SneakyThrows(Exception.class)
-    public void getItem_pathVariableNamePresent() {
+    void getItem_pathVariableNamePresent() {
         when(inventoryService.getItemByName(any())).thenReturn(Optional.of(Item.builder()
                 .id(1L)
                 .name("item1")
