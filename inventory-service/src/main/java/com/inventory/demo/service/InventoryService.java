@@ -16,4 +16,8 @@ public class InventoryService {
     public Optional<Item> getItemByName(String name) {
         return inventoryRepository.findItemByName(name);
     }
+
+    public Item addItem(Item item) {
+        return inventoryRepository.save(item);
+    }
 }

@@ -1,14 +1,12 @@
 package com.order.demo.entity;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 
 @Entity
 @Table(name = "orders")
+@Builder
 @Getter
 @Setter
 @AllArgsConstructor

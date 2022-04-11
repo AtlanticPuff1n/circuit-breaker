@@ -20,4 +20,8 @@ public class InventoryControllerImpl implements InventoryController {
         return inventoryService.getItemByName(name);
     }
 
+    @Override
+    public Item addItem(Item item) {
+        return inventoryService.addItem(item);
+    }
 }
